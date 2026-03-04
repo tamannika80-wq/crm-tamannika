@@ -16,9 +16,10 @@
     <script src="js/app.js"></script>
     <script>
         if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "index.html";
-        }
-
+    window.location.href = "index.html";
+  }
+            </script>
+    <script>
         function logout() {
             localStorage.removeItem("isLoggedIn");
             window.location.href = "index.html";
