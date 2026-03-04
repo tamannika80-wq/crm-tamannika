@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CRM Tamannika</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
+    <div class="login-container">
+        <h2>Dashboard CRM Tamannika</h2>
+        <p>Login berhasil 🎉</p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "index.html";
+        }
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
