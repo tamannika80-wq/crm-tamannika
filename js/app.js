@@ -1,33 +1,23 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxDLnMXNuzOCQKAeH5KQd4jHejloqDtLU2e89hR2x2XXp9w0qIPgFYzhAioRRqtTLNjfQ/exec";
-
 function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
 
-    fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({
-            action: "login",
-            username: username,
-            password: password
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-            // Simpan session login
-            localStorage.setItem("isLoggedIn", "true");
+  const data = new URLSearchParams();
+  data.append("username", username);
+  data.append("password", password);
 
-            // Redirect ke dashboard
-            window.location.href = "dashboard.html";
-
-        } else {
-            document.getElementById("message").innerText = "Login gagal!";
-        }
-    })
-    .catch(err => {
-        document.getElementById("message").innerText = "Terjadi kesalahan koneksi.";
-        console.error(err);
-    });
+  fetch("https://script.google.com/macros/s/AKfycbxDLnMXNuzOCQKAeH5KQd4jHejloqDtLU2e89hR2x2XXp9w0qIPgFYzhAioRRqtTLNjfQ/exec", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.json())
+  .then(res => {
+    if (res.status === "success") {
+      window.location.href = "dashboard.html";
+    } else {
+      alert("Login gagal");
+    }
+  })
+  .catch(err => console.error(err));
 }
