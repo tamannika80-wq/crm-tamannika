@@ -14,8 +14,9 @@ function login() {
   .then(res => res.json())
   .then(res => {
     if (res.status === "success") {
-      window.location.href = "dashboard.html";
-    } else {
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.href = "dashboard.html";
+} else {
       alert("Login gagal");
     }
   })
